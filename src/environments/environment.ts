@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   // api: 'https://localhost:44316/api/Operation'
   // api: "http://127.0.0.1:8000/api/getOperationResults/",
-  api: "https://number-detection-api.rael-calitro.ovh/api/getOperationResults/",
+  api: "https://number-detection-backend.rael-calitro.ovh/api/getOperationResults/",
 };
 
 /*
