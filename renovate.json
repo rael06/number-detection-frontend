@@ -1,0 +1,11 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>rael06/vps//renovate/default"],
+  "packageRules": [
+    {
+      "description": "Angular 8 frozen: it only builds with Node 12 and only its static output is published. Actions and Wrangler stay followed.",
+      "matchManagers": ["npm"],
+      "enabled": false
+    }
+  ]
+}

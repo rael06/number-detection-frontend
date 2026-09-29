@@ -14,6 +14,16 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+## Deployment
+
+The site runs at `https://number-detection.rael-calitro.ovh` on [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/) (static assets only, `wrangler.jsonc`). It calls the API of the repository `number-detection-backend` (`src/environments/environment.ts`, used by `ng build`; `environment.prod.ts` has the same URL).
+
+GitHub Actions (`.github/workflows/ci-cd.yml`) builds every push and pull request with Node 12 (Angular 8 does not build on current Node), and on `master` deploys `dist/` with Wrangler.
+
+- Settings: GitHub environment `production`, restricted to `master`: secret `CLOUDFLARE_API_TOKEN` (account token from the « Edit Cloudflare Workers » template, zone rule limited to `rael-calitro.ovh`), variable `CLOUDFLARE_ACCOUNT_ID`.
+- The repository variable `DEPLOY_ENABLED` (`true`/`false`) turns deployments on or off.
+- Rollback: Cloudflare → Workers & Pages → `number-detection` → Deployments, or `wrangler rollback`.
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
